@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+:root{
+    --bs-primary: rgb(32,135,67);
+    --bs-background:#EBFFF2;
+    --bs-gray:#ECECEC;
+    --bs-primary-100:#9CE2B4;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+.bg-primary{
+    background-color: var(--bs-primary) !important;
+}
+
+.bg-primary-100{
+    background-color: var(--bs-primary-100) !important;
+}
+
+.btn-primary{
+    background-color: var(--bs-primary) !important;
+    border-color:var(--bs-primary) !important;
+}
+
+.btn-outline-primary{
+    border-color:var(--bs-primary) !important;
+    color:var(--bs-primary) !important;
+}
+
+.btn-outline-primary:hover{
+    background-color: var(--bs-primary) !important;
+    color:white !important;
+}
+
+
+.text-gray{
+    color:var(--bs-gray) !important;
+}
+
+.bg-background{
+    background-color: var(--bs-background) !important;
+}
+
+.min-h-screen{
+    min-height: 100vh;
+}
+
+.mx-auto{
+    margin-bottom: 0px auto;
+}
+
+.page-link{
+    color:var(--bs-primary);
+}
+
+.link-hover:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.page-item.active .page-link {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+
+}
