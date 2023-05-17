@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
 </head>
 <body>
-Register Page
+<form>
+	<input placeholder="Full name" name="Fullname"></input><br/>
+	<input placeholder="Password" type="password" name="Password"></input><br/>	
+	<input placeholder="Address" name="Address"></input><br/>
+	<input placeholder="City" name="City"></input><br/>
+	<input type="submit" name="Fullname" value="Create account"></input><br/>
+</form>
 </body>
 </html>
