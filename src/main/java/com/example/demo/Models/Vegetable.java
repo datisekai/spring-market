@@ -10,7 +10,7 @@ public class Vegetable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer VegetableID;
+    private Integer vegetableID;
 
     private String VegetableName;
 
@@ -20,20 +20,19 @@ public class Vegetable{
 
     private String Image;
 
-    private Double Price;
+    private Double price;
 
     @Column(name="CatagoryID")
     private Integer catagoryID;
 
-    
-    private Integer sold;
+   
     
     public Integer getVegetableID() {
-        return VegetableID;
+        return vegetableID;
     }
 
     public void setVegetableID(Integer VegetableID) {
-        this.VegetableID = VegetableID;
+        this.vegetableID = VegetableID;
     }
 
     public String getVegetableName() {
@@ -69,11 +68,11 @@ public class Vegetable{
     }
 
     public double getPrice() {
-        return Price;
+        return price;
     }
 
     public void setPrice(Double Price) {
-        this.Price = Price;
+        this.price = Price;
     }
 
     public int getCatagoryID() {

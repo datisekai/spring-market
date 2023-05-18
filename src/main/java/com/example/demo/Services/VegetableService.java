@@ -22,10 +22,21 @@ public class VegetableService {
     @Autowired
     private VegetableRepository vegetableRepository;
     
-    public Page<Vegetable> getBestSellingProductsByCategory(int catagoryID, Pageable pageable) {
-        return vegetableRepository.findByCatagoryID(catagoryID, pageable);
+    public Page<Vegetable> getBestSellingProductsByCategory(int catagoryID, String Vegetable_Name, Pageable pageable) {
+        return vegetableRepository.findBestSellingByCatagoryID(catagoryID, Vegetable_Name, pageable);
     }
-    
+    public Page<Vegetable> getSortPriceProductsByCategory(int catagoryID, String Vegetable_Name, Pageable pageable) {
+        return vegetableRepository.findSortPriceProductsByCategory(catagoryID, Vegetable_Name, pageable);
+    }
+    public Page<Vegetable> getProductsByName( String Vegetable_Name, Pageable pageable) {
+        return vegetableRepository.findProductsByName( Vegetable_Name, pageable);
+    }
+    public Page<Vegetable> getProductsByCategory(int catagoryID, String Vegetable_Name, Pageable pageable) {
+        return vegetableRepository.findProductsByCategory(catagoryID, Vegetable_Name, pageable);
+    }
+    public Page<Vegetable> getProductsByBestSelling( String Vegetable_Name, Pageable pageable) {
+        return vegetableRepository.findProductsByBestSelling( Vegetable_Name, pageable);
+    }
     public Page<Vegetable> getAll(Pageable pageable){
         System.out.println(pageable);
         return vegetableRepository.findAll(pageable);

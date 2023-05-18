@@ -29,7 +29,7 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(HttpServletRequest request, Model model) {
         int limit = 8, page = 1;
-
+        String flagSort = "all";
         String pageStr = request.getParameter("page");
         if (pageStr != null) {
             try {
@@ -40,26 +40,29 @@ public class HomeController {
 
         String categoryStr = request.getParameter("category");
         String sortStr = request.getParameter("sort");
-
+        String nameStr = request.getParameter("name");
         Sort sort = Sort.by(Sort.Direction.DESC, "VegetableID");
 
         if (sortStr != null) {
             if (sortStr.equalsIgnoreCase("low-to-high")) {
                 sort = Sort.by(Sort.Direction.ASC, "Price");
+                flagSort = "price";
             } else if (sortStr.equalsIgnoreCase("high-to-low")) {
                 sort = Sort.by(Sort.Direction.DESC, "Price");
+                flagSort = "price";
             } else {
-                sort = Sort.by(Sort.Direction.DESC, "totalSold");
+//                sort = Sort.by(Sort.Direction.DESC, "sold");
+                flagSort = "sold";
             }
         }
 
         Iterable<Category> categories = categoryService.getAll();
 
-        int category = 1;
-        Iterator<Category> iterator = categories.iterator();
-        if (iterator.hasNext()) {
-            category = iterator.next().getCatagoryID();
-        }
+        int category = 0;
+//        Iterator<Category> iterator = categories.iterator();
+//        if (iterator.hasNext()) {
+//            category = iterator.next().getCatagoryID();
+//        }
 
         if (categoryStr != null) {
             try {
@@ -67,15 +70,44 @@ public class HomeController {
             } catch (NumberFormatException e) {
             }
         }
-
+        String name = "";
+        if (nameStr != null) {
+            try {
+                name = nameStr;
+            } catch (Exception e) {
+            }
+        }
+        
         Pageable pageable = PageRequest.of(page - 1, limit);
-
+        
         Page<Vegetable> products = vegetableService.getAll(pageable);
-
+        if (category == 0) {// nếu k có category (có search hoặc k gì cũng được)
+                //kiểm tra thành công
+                products = vegetableService.getProductsByName(name, pageable);
+            if ("sold".equals(flagSort)) {//nếu không có category mà có sort bán chạy
+                //kiểm tra thành công
+                products = vegetableService.getProductsByBestSelling(name, pageable);
+            } else if ("price".equals(flagSort)) {//nếu không có category mà có sort giá
+                //kiểm tra thành công
+                pageable = PageRequest.of(page - 1, limit, sort);
+                products = vegetableService.getProductsByName( name, pageable);
+            }
+        } else {// nếu có category (có search hoặc k gì cũng được)
+                //kiểm tra thành công
+                products = vegetableService.getProductsByCategory(category, name, pageable);
+            if ("sold".equals(flagSort)) {//nếu có category mà có sort bán chạy
+                //kiểm tra thành công
+                products = vegetableService.getBestSellingProductsByCategory(category, name, pageable);
+            } else if ("price".equals(flagSort)) {//nếu không có category mà có sort giá
+                //kiểm tra thành công
+                pageable = PageRequest.of(page - 1, limit, sort);
+                products = vegetableService.getSortPriceProductsByCategory(category, name, pageable);
+            }
+        }
         model.addAttribute("products", products.getContent());
         model.addAttribute("totalPage", products.getTotalPages());
         model.addAttribute("totalElement", products.getTotalElements());
-        model.addAttribute("currentPage",page);
+        model.addAttribute("currentPage", page);
 
         model.addAttribute("categories", categories);
         return "pages/index";

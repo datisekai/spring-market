@@ -49,20 +49,17 @@ public class TestController {
         String categoryStr = request.getParameter("category");
         String sortStr = request.getParameter("sort");
 
-        Sort sort = Sort.by(Sort.Direction.DESC, "VegetableID");
+        Sort sort = Sort.by(Sort.Direction.DESC, "vegetableID");
 
         if (sortStr != null) {
             if (sortStr.equalsIgnoreCase("low-to-high")) {
                 sort = Sort.by(Sort.Direction.ASC, "Price");
             } else if (sortStr.equalsIgnoreCase("high-to-low")) {
                 sort = Sort.by(Sort.Direction.DESC, "Price");
-            } else {
-                sort = Sort.by(Sort.Direction.DESC, "totalSold");
             }
         }
 
 //        Pageable pageable = PageRequest.of(page, limit);
-
         Iterable<Category> categories = categoryService.getAll();
 
         int CatagoryID = 1;
@@ -77,10 +74,16 @@ public class TestController {
             } catch (NumberFormatException e) {
             }
         }
-        
+        String nameStr = request.getParameter("name");
         Pageable pageable = PageRequest.of(page - 1, limit);
-
-        Page<Vegetable> products = vegetableService.getBestSellingProductsByCategory(CatagoryID, pageable);
+        String name = "";
+        if (nameStr != null) {
+            try {
+                name = nameStr;
+            } catch (Exception e) {
+            }
+        }
+        Page<Vegetable> products = vegetableService.getSortPriceProductsByCategory(CatagoryID,name, pageable);
 
         model.addAttribute("categories", categories);
         return products;
