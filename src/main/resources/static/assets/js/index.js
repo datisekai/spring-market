@@ -20,3 +20,4 @@ categories.forEach(item => {
         handleAddQuery("category",id);
     }
 })
+

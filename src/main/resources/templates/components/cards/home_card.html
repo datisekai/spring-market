@@ -1,11 +1,13 @@
-<div class="card shadow" style="width: 100%;">
+<div class="card shadow"  style="width: 100%;">
     <img th:src="${data.Image}" class="card-img-top" style="aspect-ratio:1/1" th:alt="${data.VegetableName}">
     <div class="card-body">
         <h5 class="card-title" style="text-transform: capitalize" th:text="${data.VegetableName}"></h5>
         <p class="card-text" th:text="${#numbers.formatCurrency(data.Price)}"></p>
         <div class="d-flex gap-2">
-            <button type="button" class="btn btn-primary ">Buy Now</button>
-            <button type="button" class="btn btn-outline-primary ">Add To Cart</button>
+            <button type="button" th:data-id="${data.VegetableID}" class="btn-buy-now btn btn-primary ">Buy Now</button>
+            <button type="button" th:data-id="${data.VegetableID}" onclick="handleAddToCart(${data})" th:data-data="${data}" class="btn-add-cart btn btn-outline-primary">Add To Cart</button>
         </div>
     </div>
 </div>
+
+ 

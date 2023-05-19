@@ -4,25 +4,29 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Customers")
-public class Customer {
+public class Customers {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer CustomerID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="CustomerID")
+    private Integer customerID;
 
     private String Password;
-    private String Fullname;
+    
+    @Column(name="Fullname")
+    private String fullName;
     private String Address;
     private String City;
 
     public Integer getCustomerID() {
-        return CustomerID;
+        return customerID;
     }
 
-    public void setCustomerID(Integer CustomerID) {
-        this.CustomerID = CustomerID;
+    public void setCustomerID(Integer customerID) {
+        this.customerID = customerID;
     }
 
+   
     public String getPassword() {
         return Password;
     }
@@ -31,14 +35,15 @@ public class Customer {
         this.Password = Password;
     }
 
-    public String getFullname() {
-        return Fullname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFullname(String Fullname) {
-        this.Fullname = Fullname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
+  
     public String getAddress() {
         return Address;
     }
