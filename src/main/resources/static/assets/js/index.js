@@ -17,7 +17,7 @@ const categories = document.querySelectorAll('.category');
 categories.forEach(item => {
     item.onclick = () => {
         const id = item.getAttribute('data-id');
-        handleAddQuery("category",id);
+        handleAddQuery("category", id);
     }
 })
 

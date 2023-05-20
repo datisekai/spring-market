@@ -36,10 +36,6 @@ public class CartController {
         if (tempSession != null) {
             products = tempSession;
         }
-
-
-    
-
         model.addAttribute("carts", products);
 
         return "pages/cart";

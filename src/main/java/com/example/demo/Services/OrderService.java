@@ -5,9 +5,12 @@
 package com.example.demo.Services;
 
 import com.example.demo.Models.Order;
+import com.example.demo.Models.Vegetable;
 import com.example.demo.Repositories.OrderRepository;
 import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,6 +22,11 @@ public class OrderService {
 
     @Autowired
     private OrderRepository orderRepository;
+
+    public Page<Order> getOrderByCustomerID(String CustomerID, Pageable pageable) {
+        System.out.println(pageable);
+        return orderRepository.findOrderByCustomerID(CustomerID, pageable);
+    }
 
     public Order createOrder(int customerID, int total, String note) {
         Order order = new Order();

@@ -21,6 +21,4 @@ import org.springframework.stereotype.Repository;
 public interface VegetableRepository extends PagingAndSortingRepository<Vegetable, Integer>{
     @Query("SELECT p FROM Vegetable as p, OrderDetail as od WHERE p.CatagoryID = :catagoryID AND p.VegetableID = od.VegetableID GROUP BY p.VegetableID ORDER BY SUM(od.Quantity) DESC")
     Page<Vegetable> findByCatagoryID(@Param("catagoryID") int catagoryID, Pageable pageable);
-    
- 
 }

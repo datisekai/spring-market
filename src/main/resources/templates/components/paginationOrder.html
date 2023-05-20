@@ -1,0 +1,17 @@
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous" th:if="${currentPage > 1}" th:href="@{${'/order?page=' + (currentPage - 1)}}"> <!-- Kiểm tra nếu không phải trang đầu tiên -->
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item" th:each="page : ${#numbers.sequence(1, totalPage)}" th:class="${page == currentPage} ? 'page-item active' : 'page-item'">
+      <a class="page-link" th:href="@{${'/order?page=' + page}}" th:text="${page}"></a>
+    </li>
+    <li class="page-item">
+         <a class="page-link" href="#" aria-label="Next" th:if="${currentPage < totalPages}" th:href="@{${'/order?page=' + (currentPage + 1)}}"> <!-- Kiểm tra nếu không phải trang cuối cùng -->
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

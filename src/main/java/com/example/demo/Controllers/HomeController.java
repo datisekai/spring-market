@@ -53,7 +53,7 @@ public class HomeController {
             }
         }
 
-        Iterable<Category> categories = categoryService.getAll();
+        Iterable<Category> categories = categoryService.getAll(); 
 
         int category = 1;
         Iterator<Category> iterator = categories.iterator();
