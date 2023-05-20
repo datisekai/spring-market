@@ -30,13 +30,15 @@ public interface VegetableRepository extends PagingAndSortingRepository<Vegetabl
        "AND vegetable.Vegetable_Name LIKE CONCAT('%', :Vegetable_Name , '%') "+
        "GROUP BY vegetable.VegetableID " +
        "ORDER BY SUM(temp.Quantity) DESC ", nativeQuery = true)
-    Page<Vegetable> findBestSellingByCatagoryID(@Param("catagoryID") int catagoryID, @Param("Vegetable_Name") String Vegetable_Name, Pageable pageable);
+    Page<Vegetable> findBestSellingByCatagoryID(@Param("catagoryID") int catagoryID,
+            @Param("Vegetable_Name") String Vegetable_Name, Pageable pageable);
     @Query(value = "SELECT * " +
         "FROM vegetable WHERE " +
         "vegetable.CatagoryID = :catagoryID " +
         "AND vegetable.Vegetable_Name LIKE CONCAT('%', :Vegetable_Name , '%') "
         , nativeQuery = true)
-    Page<Vegetable> findSortPriceProductsByCategory(@Param("catagoryID") int catagoryID, @Param("Vegetable_Name") String Vegetable_Name, Pageable pageable);
+    Page<Vegetable> findSortPriceProductsByCategory(@Param("catagoryID") int catagoryID, 
+            @Param("Vegetable_Name") String Vegetable_Name, Pageable pageable);
     @Query(value = "SELECT * " +
         "FROM vegetable WHERE " +
         "vegetable.Vegetable_Name LIKE CONCAT('%', :Vegetable_Name , '%') "
@@ -47,7 +49,8 @@ public interface VegetableRepository extends PagingAndSortingRepository<Vegetabl
         "vegetable.CatagoryID = :catagoryID " +
         "AND vegetable.Vegetable_Name LIKE CONCAT('%', :Vegetable_Name , '%') "
         , nativeQuery = true)
-    Page<Vegetable> findProductsByCategory(@Param("catagoryID") int catagoryID, @Param("Vegetable_Name") String Vegetable_Name, Pageable pageable);
+    Page<Vegetable> findProductsByCategory(@Param("catagoryID") int catagoryID, 
+            @Param("Vegetable_Name") String Vegetable_Name, Pageable pageable);
     @Query(value = "SELECT vegetable.*, SUM(temp.Quantity) as sold " +
        "FROM vegetable, (SELECT VegetableID, Quantity FROM orderdetail) as temp " +
        "WHERE temp.VegetableID = vegetable.VegetableID " +

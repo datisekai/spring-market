@@ -51,7 +51,6 @@ public class HomeController {
                 sort = Sort.by(Sort.Direction.DESC, "Price");
                 flagSort = "price";
             } else {
-//                sort = Sort.by(Sort.Direction.DESC, "sold");
                 flagSort = "sold";
             }
         }
@@ -59,10 +58,6 @@ public class HomeController {
         Iterable<Category> categories = categoryService.getAll();
 
         int category = 0;
-//        Iterator<Category> iterator = categories.iterator();
-//        if (iterator.hasNext()) {
-//            category = iterator.next().getCatagoryID();
-//        }
 
         if (categoryStr != null) {
             try {

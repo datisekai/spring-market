@@ -25,24 +25,6 @@ public class OrderDetailService {
 
     public Iterable<OrderDetail> getOrderDetailByOrderID(int orderID) {
         Iterable<OrderDetail> entities = ordrerDetailRepository.findProductByOrderID(orderID);
-        for (OrderDetail o : entities) {
-//            System.out.println("OrderDetail ID: " + o.getId());
-            System.out.println("Quantity: " + o.getQuantity());
-            System.out.println("Price: " + o.getPrice());
-
-            // Lấy thông tin chi tiết sản phẩm
-//            Vegetable vegetable = o.getVegetable();
-//            System.out.println("Vegetable ID: " + vegetable.getVegetableName());
-//            System.out.println("Vegetable Name: " + vegetable.getImage());
-            // ...
-        }
-//        entities.ifPresent(orderDetail -> {
-//            // Xử lý khi OrderDetail tồn tại
-//            // Ví dụ:
-//            System.out.println("OrderDetail ID: " + orderDetail.getId());
-//            System.out.println("Quantity: " + orderDetail.getQuantity());
-//            System.out.println("Price: " + orderDetail.getPrice());
-//        });
         return ordrerDetailRepository.findProductByOrderID(orderID);
     }
 }
