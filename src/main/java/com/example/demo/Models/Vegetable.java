@@ -1,6 +1,7 @@
 package com.example.demo.Models;
 
 import jakarta.persistence.*;
+import java.util.List;
 import lombok.Data;
 
 @Data
@@ -16,22 +17,22 @@ public class Vegetable{
 
     private String Unit;
 
-    private Integer Amount;
+    private int Amount;
 
     private String Image;
 
     private Double price;
 
     @Column(name="CatagoryID")
-    private Integer catagoryID;
+    private int catagoryID;
 
    
     
-    public Integer getVegetableID() {
+    public int getVegetableID() {
         return vegetableID;
     }
 
-    public void setVegetableID(Integer VegetableID) {
+    public void setVegetableID(int VegetableID) {
         this.vegetableID = VegetableID;
     }
 
@@ -51,11 +52,11 @@ public class Vegetable{
         this.Unit = Unit;
     }
 
-    public Integer getAmount() {
+    public int getAmount() {
         return Amount;
     }
 
-    public void setAmount(Integer Amount) {
+    public void setAmount(int Amount) {
         this.Amount = Amount;
     }
 
@@ -79,11 +80,12 @@ public class Vegetable{
         return catagoryID;
     }
 
-    public void setCatagoryID(Integer CatagoryID) {
+    public void setCatagoryID(int CatagoryID) {
         this.catagoryID = CatagoryID;
     }
 
-
+    @OneToMany(mappedBy = "vegetable")
+    private List<OrderDetail> OrderDetails;
 
 
 

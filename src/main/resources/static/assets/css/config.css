@@ -34,7 +34,9 @@ body{
     color:white !important;
 }
 
-
+.text-green{
+    color:var(--bs-primary) !important;
+}
 .text-gray{
     color:var(--bs-gray) !important;
 }
